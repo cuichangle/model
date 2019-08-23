@@ -1,0 +1,11 @@
+var filter = {
+ upcase:function(str){
+   return str.toUpperCase()  // 页面上可以直接对数据进行处理
+   },
+  lower:function(str){
+    return str.toLowerCase()
+  }
+  
+  
+}
+module.exports = filter

@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "模板",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#959595",
+    "selectedColor": "#F08246",
+    "backgroundColor": "#ffffff",
+    "position": "bottom",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "pages/image/home1.png",
+        "iconPath": "pages/image/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "pages/image/mine1.png",
+        "iconPath": "pages/image/mine.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "为了更好的体验小程序请允许授权位置信息"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

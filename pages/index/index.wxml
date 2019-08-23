@@ -1,0 +1,10 @@
+<wxs src="../../utils/filter.wxs" module="filter" ></wxs>
+<view class="main" bindtap="gomine" >
+
+
+   模板
+   {{filter.upcase(text)}}
+   {{filter.lower(text1)}}
+  
+
+</view>

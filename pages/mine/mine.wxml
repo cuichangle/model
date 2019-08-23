@@ -1,0 +1,11 @@
+<!--pages/mine/mine.wxml-->
+<text bindtap="goto">pages/mine/mine.wxml</text>
+{{avatar}}
+<view  wx:if="{{userinfo}}" >
+    <image src="{{userinfo.avatarUrl}}"></image>
+</view>
+<view bindtap="loginbtn" wx:else>点击登录</view>
+<view wx:if="{{dialog}}">
+    <login bind:cancelLogin="cancelLogin" bind:agree='agree' ></login>
+</view>
+

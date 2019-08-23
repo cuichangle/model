@@ -1,0 +1,14 @@
+
+
+<view wx:if="{{!islogin}}">
+  <view class="bg">
+    <view class="content">
+      <view class="title">提示</view>
+      <view class="product">为了便于使用小程序，请授权登录！</view>
+      <view class="btmwarp">
+        <text class="cancel" bindtap="cancel">取消</text>
+        <button class='loginbtn' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
