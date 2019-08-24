@@ -18,6 +18,7 @@ Component({
     // 点击了确定
     bindGetUserInfo(e){
       let info = e.detail.info
+      
       if(info){
         app.globalData.userInfo = info
         this.triggerEvent('cancelLogin', { dialog: false, cancel: false });
