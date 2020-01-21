@@ -1,6 +1,18 @@
 
 App({
   onLaunch: function () {
+    let menuButtonObject = wx.getMenuButtonBoundingClientRect();
+    wx.getSystemInfo({
+      success: res => {
+        let statusBarHeight = res.statusBarHeight,
+          navTop = menuButtonObject.top,//胶囊按钮与顶部的距离
+          navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;//导航高度
+        this.globalData.navh = navHeight;
+        this.globalData.navt = navTop;
+        this.globalData.windowh= res.windowHeight;
+      }
+    }),
+
     // 获取code
     wx.login({
       success: res => {
@@ -42,18 +54,21 @@ App({
     });
   },
   // 公用的请求方法
-  httpRequest: (url, parm,methodType = 'post') => {
-    let token = this.gets('token') || ''
+  request (url, parm,methodType = 'post'){
+    var token = this.gets('userinfo') ? JSON.parse(this.gets('userinfo')).id : ''
+   
+ 
     let promise = new Promise((resolve,reject)=>{
     wx.request({
       url: this.globalData.url+url,
       data:parm,
       method: methodType,
       header:{
-        'token':token,
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        userAccess:token
       },
       success:(res)=>{
+       
         resolve(res.data)
       },
       error:(e)=>{
@@ -64,10 +79,14 @@ App({
     return promise
   },
   globalData: {
-    url:'https://xxxxxxxx/',//请求地址
+    url:'',//请求地址
     userInfo: null,
     lon:'',
-    lat:''
+    lat:'',
+    vanh:'',
+    navt:'',
+    windowh:'',
+    pagename:'维修专家'
   },
 
   // 确认框
@@ -114,24 +133,38 @@ App({
     wx.setStorageSync(key,val)
   },
   gets(key){
-   return wx.getStorageSync(key)
+    if (wx.getStorageSync(key)){
+      return wx.getStorageSync(key)
+    }else{
+    
+      return false
+
+    }
   },
   isphone(mobile){
     return !(/^1[3456789]\d{9}$/.test(mobile))
   },
   //加载提示
-  load(){
+  load(title='加载中...'){
     wx.showLoading({
-      title: '加载中...',
+      title: title,
     })
   },
-  hideload(){
+  hide(){
     wx.hideLoading()
   },
-  toast(msg){
+  toast(msg,duation=1500){
     wx.showToast({
       title:msg ,
+      duration:duation,
       icon:'none'
     })
   },
+  stoast(msg){
+    wx.showToast({
+      title: msg,
+      icon:'success'
+    })
+  },
+
 })
